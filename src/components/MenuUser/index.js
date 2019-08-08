@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import {Menu,Typography } from 'antd'
-const { Title } = Typography;
+import {Menu } from 'antd'
 
 export default class index extends Component {
   render() {
@@ -8,8 +7,6 @@ export default class index extends Component {
       <Menu
       theme="dark"
       mode="horizontal"
-    
-    
       style={{ lineHeight: '64px' }}
     >
       <Menu.Item onClick={this.props.logout}>Logout</Menu.Item>

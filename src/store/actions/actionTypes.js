@@ -1,0 +1,15 @@
+export const TODO={
+  ADD:"ADD_TODO",
+  DELETE:"DELETE_TODO",
+  EDIT:"EDIT_TODO"
+}
+
+export const LOGIN={
+  LOGIN:"LOGIN",
+  LOGOUT:"QUIT"  
+}
+export const REGISTER={
+ CHANGE_REGISTER_STATE:'CHANGE_REGISTER_STATE',
+ REGISTER:"REGISTER"
+
+}

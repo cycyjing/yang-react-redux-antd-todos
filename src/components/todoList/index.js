@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { List, Avatar, Button, Skeleton } from 'antd';
-
-
-
-
-
+import { List, Avatar } from 'antd';
 
 export default class LoadMoreList extends Component {
-
   render() {
     return (
       <List
@@ -18,13 +12,10 @@ export default class LoadMoreList extends Component {
           <List.Item.Meta
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
             title={<a href="https://ant.design">{item.title}</a>}
-            
           />
-         
         </List.Item>
       )}
     />
-      
     );
   }
 }

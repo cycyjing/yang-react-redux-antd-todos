@@ -3,7 +3,8 @@ import {Menu } from 'antd'
 
 export default class index extends Component {
   handleMenuSelected=(params)=>{
-    this.props.selected(params)
+    console.log(params)
+    this.props.se(params.key)
   }
   render() {
     return (
