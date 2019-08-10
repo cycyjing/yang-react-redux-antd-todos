@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import { Login, Register, MenuLogin, MenuUser, TodoList } from '../../components'
+import { Login, Register, MenuLogin, MenuUser, TodoList,Loading } from '../../components'
 import { connect } from 'react-redux'
-import { login,logout,addTodo,delTodo,editTodo,changeRegisterState,register} from '../../store/actions'
-import {List} from 'immutable'
+import { login, logout, addTodo, delTodo, editTodo, changeRegisterState, register ,gettodos} from '../../store/actions'
+
 const { Header, Content, Footer } = Layout;
 const mapState = (state) => {
- console.log(List(state.getIn(['todoListState','todos'])).toArray())
+ console.log(state.get('todoListState'))
   return {
-    todos:List(state.getIn(['todoListState','todos'])),
-    isLogin:state.getIn(['loginState','isLogin']),
-    isError:state.getIn(['loginState','isError']),
-    errMsg:state.getIn(['loginState','errMsg']),
-    username:state.getIn(['loginState','username']),
-    password:state.getIn(['loginState','password']),
-    isRegister:state.getIn(['registerState','isRegister'])
+    todos: state.get('todoListState').todos,
+    isLogin: state.getIn(['loginState', 'isLogin']),
+    isError: state.getIn(['loginState', 'isError']),
+    username: state.getIn(['loginState', 'username']),
+    password: state.getIn(['loginState', 'password']),
+    isRegister: state.getIn(['registerState', 'isRegister']),
+    isLoading: state.getIn(['connectState', 'isLoading']),
+    errorMsg: state.getIn(['connectState', 'errorMsg'])
+
   }
 }
 
@@ -33,13 +35,16 @@ class HomePage extends Component {
 
           <div style={{ background: '#fff', padding: 24, minHeight: 280, marginTop: 100 }}>
             {this.props.isLogin ?
-              <TodoList todos={this.props.todos} />
+              <TodoList todos={this.props.todos} gettodos={this.props.gettodos} />
               :
               this.props.isRegister ?
                 <Login login={this.props.login} /> :
                 <Register />
             }
+         
+            {this.props.isLoading?<Loading/>:''}
           </div>
+          
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
@@ -48,4 +53,4 @@ class HomePage extends Component {
 }
 
 
-export default  connect(mapState, { login,logout,addTodo,delTodo,editTodo,changeRegisterState,register})(HomePage)
+export default connect(mapState, { login, logout, addTodo, delTodo, editTodo, changeRegisterState, register,gettodos })(HomePage)

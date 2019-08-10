@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { List, Avatar } from 'antd';
 
 export default class LoadMoreList extends Component {
+  componentDidMount(){
+    this.props.gettodos('2')
+  }
   render() {
     return (
       <List

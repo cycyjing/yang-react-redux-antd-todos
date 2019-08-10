@@ -1,42 +1,16 @@
 import {TODO} from '../actions/actionTypes'
-import { fromJS } from 'immutable';
-const initstate=fromJS({
-  todos:[
-    {
-      "userId": 1,
-      "id": 1,
-      "title": "delectus aut autem",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": 2,
-      "title": "quis ut nam facilis et officia qui",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": 3,
-      "title": "fugiat veniam minus",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": 4,
-      "title": "et porro tempora",
-      "completed": true
-    },
-    {
-      "userId": 1,
-      "id": 5,
-      "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-      "completed": false
-    }
-  ]
-})
+// import { List } from 'immutable';
+const initstate={
+  todos:[]
+}
 export default (state=initstate,action) => {
   let newTodos=null
   switch(action.type){
+    case TODO.GET:
+      newTodos =state.todos.slice().concat(action.payload.todos)
+    let newstate = {}
+    Object.assign(newstate,state,{todos:newTodos})
+      return  newstate
     case TODO.ADD:
       // const newTodos =JSON.parse(JSON.stringify(state.todos))
       //  newTodos =[...state.todos,{...action.payload,id:state.todos[state.todos.length-1].id+1}]

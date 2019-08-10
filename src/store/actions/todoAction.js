@@ -1,4 +1,24 @@
 import {TODO} from './actionTypes'
+import $http from '../../serverces'
+import connectConfig from '../../serverces/connectConfig'
+import {error } from './connectAction'
+
+export const gettodos =(userId)=>(dispatch)=>{
+  $http.get(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`).then(r=>r.data).then(data=>{
+    console.log('data', data)
+    dispatch({
+      type:TODO.GET,
+      payload:{
+        todos:data,
+        userId
+      }
+    })
+  }).catch(err=>{
+    dispatch(error(err.message))
+    return Promise.reject(err)
+  })
+
+}
 export const addTodo=(todo)=>{
   return {
     type:TODO.ADD,
