@@ -4,10 +4,10 @@ import {fromJS,merge} from 'immutable'
 const initstate=fromJS(
   {
     isLogin:false,
-    isError:false,
     errMsg:'',
     username:'a',
-    password:'a'
+    password:'a',
+    userId:''
   }
 )
 export default (state=initstate,action) => {

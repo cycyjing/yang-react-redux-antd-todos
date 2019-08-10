@@ -6,13 +6,11 @@ import { login, logout, addTodo, delTodo, editTodo, changeRegisterState, registe
 
 const { Header, Content, Footer } = Layout;
 const mapState = (state) => {
- console.log(state.get('todoListState'))
+
   return {
-    todos: state.get('todoListState').todos,
+    todos: state.getIn(['todoListState','todos']),
     isLogin: state.getIn(['loginState', 'isLogin']),
-    isError: state.getIn(['loginState', 'isError']),
-    username: state.getIn(['loginState', 'username']),
-    password: state.getIn(['loginState', 'password']),
+    isError: state.getIn(['connectState', 'isError']),
     isRegister: state.getIn(['registerState', 'isRegister']),
     isLoading: state.getIn(['connectState', 'isLoading']),
     errorMsg: state.getIn(['connectState', 'errorMsg'])

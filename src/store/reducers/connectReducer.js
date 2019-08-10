@@ -2,7 +2,8 @@ import { fromJS,merge } from 'immutable'
 import { CONNECT } from '../actions/actionTypes'
 const initState = fromJS({
   isLoading: false,
-  errorMsg: ''
+  errorMsg: '',
+  isError:''
 })
 export default (state = initState, action) => {
   switch (action.type) {
