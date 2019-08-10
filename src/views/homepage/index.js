@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import { Login, Register, MenuLogin, MenuUser, TodoList,Loading } from '../../components'
+import { Login, Register, MenuLogin, MenuUser, TodoList,Loading ,Footer} from '../../components'
 import { connect } from 'react-redux'
 import { login, logout, addTodo, delTodo, editTodo, changeRegisterState, register ,gettodos} from '../../store/actions'
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 const mapState = (state) => {
 
   return {
@@ -14,7 +14,6 @@ const mapState = (state) => {
     isRegister: state.getIn(['registerState', 'isRegister']),
     isLoading: state.getIn(['connectState', 'isLoading']),
     errorMsg: state.getIn(['connectState', 'errorMsg'])
-
   }
 }
 
@@ -39,12 +38,10 @@ class HomePage extends Component {
                 <Login login={this.props.login} /> :
                 <Register />
             }
-         
             {this.props.isLoading?<Loading/>:''}
           </div>
-          
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer />
       </Layout>
     )
   }
