@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import { Login, Register, MenuLogin, MenuUser, TodoList,Loading ,Footer} from '../../components'
+import { Login, Register,  TodoList,Loading ,Footer,Header} from '../../components'
 import { connect } from 'react-redux'
 import { login, logout, addTodo, delTodo, editTodo, changeRegisterState, register ,gettodos} from '../../store/actions'
 
-const { Header, Content } = Layout;
+const {  Content } = Layout;
 const mapState = (state) => {
 
   return {
@@ -21,13 +21,7 @@ class HomePage extends Component {
   render() {
     return (
       <Layout className="layout">
-        <Header>
-          <div className="logo" />
-          {this.props.isLogin ?
-            <MenuUser username={this.props.username} logout={this.props.logout} /> :
-            <MenuLogin se={this.props.changeRegisterState} />
-          }
-        </Header>
+       <Header />
         <Content style={{ padding: '0 50px' }}>
 
           <div style={{ background: '#fff', padding: 24, minHeight: 280, marginTop: 100 }}>
