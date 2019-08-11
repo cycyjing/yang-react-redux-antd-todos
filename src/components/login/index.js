@@ -3,17 +3,12 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux'
 import { login ,changeRegisterState} from '../../store/actions'
 
-// const mapState = (state) => {
+const mapState = (state) => {
 
-//   return {
-//     todos: state.getIn(['todoListState','todos']),
-//     isLogin: state.getIn(['loginState', 'isLogin']),
-//     isError: state.getIn(['connectState', 'isError']),
-//     isRegister: state.getIn(['registerState', 'isRegister']),
-//     isLoading: state.getIn(['connectState', 'isLoading']),
-//     errorMsg: state.getIn(['connectState', 'errorMsg'])
-//   }
-// }
+  return {
+    isLogin: state.getIn(['loginState', 'isLogin']),
+  }
+}
 class NormalLoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -81,8 +76,9 @@ class NormalLoginForm extends Component {
         
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
-          </Button>
-          Or <a href="">register now!</a>
+          </Button>  
+          <b> <i>Or</i> </b>
+          <Button onClick={this.props.changeRegisterState} type="link">register now!</Button>
         </Form.Item>
       </Form>
     );
@@ -90,4 +86,4 @@ class NormalLoginForm extends Component {
 }
 
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
-export default WrappedNormalLoginForm
+export default connect(mapState,{ login ,changeRegisterState} )(WrappedNormalLoginForm)

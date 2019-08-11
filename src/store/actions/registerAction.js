@@ -1,25 +1,28 @@
 import { REGISTER } from './actionTypes'
-export const register = (user) => {
-  return {
-    type: REGISTER.REGISTER,
-    payload: {
-      user
-    }
-  }
+import $http from '../../serverces'
+import {error} from './connectAction'
+
+export const register = user => dispatch => {
+  $http.post().then((r) => r.data).then(data => {
+    console.log(data)
+    dispatch({
+      type: REGISTER.REGISTER,
+      payload: {
+       username:data.username,
+       password:data.password,
+       userId:data.userId
+      }
+    })
+  }).catch(err=>{
+    dispatch(error(err.message))
+    return Promise.reject(err)
+  })
+ 
 
 }
-export const changeRegisterState = (key) => {
-  const action = {
-    type: REGISTER.CHANGE_REGISTER_STATE
+export const changeRegisterState = (registerState) => {
+  return {
+    type: REGISTER.CHANGE_REGISTER_STATE,
+    payload: registerState
   }
-  if (key === '1') {
-    action.payload = {
-      isRegister: true
-    }
-  } else if (key === '2') {
-    action.payload = {
-      isRegister: false
-    }
-  }
-  return action
 }

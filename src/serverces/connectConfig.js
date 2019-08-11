@@ -5,10 +5,11 @@ export default {
     timeout:10000
   },
   apis:{
-    getTodo:'/todos',
+    getTodo:'https://jsonplaceholder.typicode.com/todos?userId=',
     register:'/addUsers',
     addtodo:'/addTodo',
-    getUser:'/users'
+    editTodo:'/editTodo',
+    login:'/users'
   }
 
 }

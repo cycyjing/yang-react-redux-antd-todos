@@ -1,6 +1,6 @@
 import {TODO} from './actionTypes'
 import $http from '../../serverces'
-import connectConfig from '../../serverces/connectConfig'
+
 import {error } from './connectAction'
 
 export const gettodos =(userId)=>(dispatch)=>{
