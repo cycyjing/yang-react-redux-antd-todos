@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { connect } from 'react-redux'
+import { login ,changeRegisterState} from '../../store/actions'
 
+// const mapState = (state) => {
+
+//   return {
+//     todos: state.getIn(['todoListState','todos']),
+//     isLogin: state.getIn(['loginState', 'isLogin']),
+//     isError: state.getIn(['connectState', 'isError']),
+//     isRegister: state.getIn(['registerState', 'isRegister']),
+//     isLoading: state.getIn(['connectState', 'isLoading']),
+//     errorMsg: state.getIn(['connectState', 'errorMsg'])
+//   }
+// }
 class NormalLoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -12,10 +25,34 @@ class NormalLoginForm extends Component {
   };
 
   render() {
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 16 },
+        sm: { span: 8 },
+        
+      },
+      wrapperCol: {
+       
+        xs: { span: 16 ,offset:4},
+        sm: { span: 10 ,offset:6},
+      },
+    };
+    const tailFormItemLayout = {
+      wrapperCol: {
+        xs: {
+          span: 20,
+          offset: 0,
+        },
+        sm: {
+          span: 16,
+          offset: 7,
+        },
+      },
+    };
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
+      <Form onSubmit={this.handleSubmit} {...formItemLayout} className="login-form">
+        <Form.Item >
           {getFieldDecorator('username', {
             rules: [{ required: true,message: 'Please input your username!' }],
           })(
@@ -25,7 +62,7 @@ class NormalLoginForm extends Component {
             />,
           )}
         </Form.Item>
-        <Form.Item>
+        <Form.Item >
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
@@ -36,14 +73,12 @@ class NormalLoginForm extends Component {
             />,
           )}
         </Form.Item>
-        <Form.Item>
+        <Form.Item {...tailFormItemLayout}>
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true,
           })(<Checkbox>Remember me</Checkbox>)}
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
+        
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
