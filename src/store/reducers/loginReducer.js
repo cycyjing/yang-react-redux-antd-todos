@@ -13,7 +13,7 @@ const initstate=fromJS(
 export default (state=initstate,action) => {
   switch(action.type){
     case LOGIN.LOGIN:
-      console.log(action)
+      
         return merge(state,action.payload)
       case LOGIN.LOGOUT:
         return merge(state,action.payload)

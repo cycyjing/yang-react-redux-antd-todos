@@ -1,6 +1,6 @@
 const { override, addDecoratorsLegacy, fixBabelImports, addLessLoader } = require('customize-cra')
 
-module.export = override(
+module.exports = override(
   addDecoratorsLegacy(),//装饰器模式
   fixBabelImports('import', { //引入antd简化
     libraryName: 'antd',

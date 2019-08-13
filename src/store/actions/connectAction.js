@@ -1,7 +1,6 @@
 import { CONNECT } from './actionTypes'
 
 export const constart = () => {
-  //不需要
   return {
     type: CONNECT.START,
     payload: {
@@ -10,7 +9,6 @@ export const constart = () => {
   }
 }
 export const success = () => {
-  //不需要
   return {
     type: CONNECT.SUCCESS,
     payload: {
@@ -19,7 +17,6 @@ export const success = () => {
   }
 }
 export const error = (errorMsg) => {
-  //
   return {
     type: CONNECT.ERROR,
     payload: {

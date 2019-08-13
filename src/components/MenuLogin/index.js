@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
-import { logout, changeRegisterState, register } from '../../store/actions'
+import {  changeRegisterState } from '../../store/actions'
+const mapState=(state) => ({
+  isRegister: state.getIn(['registerState', 'isRegister']),
+})
+
+@connect(mapState, { changeRegisterState })
 class MenuLogin extends Component {
   handleMenuSelected = (params) => {
     if (params.key === "1") {
@@ -16,6 +21,7 @@ class MenuLogin extends Component {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={['1']}
+        selectedKeys={this.props.isRegister?['1']:['2']}
         onSelect={this.handleMenuSelected}
         style={{ lineHeight: '64px' }}
       >
@@ -26,4 +32,4 @@ class MenuLogin extends Component {
     )
   }
 }
-export default connect(null, { changeRegisterState })(MenuLogin)
+export default MenuLogin

@@ -7,19 +7,22 @@ export default (state = initstate, action) => {
   let newTodos = null
   switch (action.type) {
     case TODO.GET:
-      //   newTodos =state.todos.slice().concat(action.payload.todos)
-      // let newstate = {}
-      // Object.assign(newstate,state,{todos:newTodos})
-      // console.log(state.get('todos').concat(action.payload.todos).toJS(),'11111111111111111111111111111111111111111')
-      newTodos = state.get('todos').concat(action.payload.todos)
+      newTodos = state
+      .get('todos')
+      .merge(action.payload.todos)
+      .sort(
+        (val1,val2) => {
+          if(val1.id>val2.id){return -1} 
+          else return 1
+        }
+        )
       return state.set('todos', newTodos)
-    case TODO.ADD:
-      newTodos = state.get('todos').push({ ...action.payload, id: state.get('todos').last().id + 1 })
-
+    case TODO.ADD:  
+      newTodos = state.get('todos').unshift({ ...action.payload})
       return state.set('todos', newTodos)
     case TODO.DELETE:
       newTodos = state.get('todos').filterNot((todo) => {
-        return todo.id !== action.payload.id
+        return todo.id === action.payload.id
       })
       return state.set('todos', newTodos)
     case TODO.EDIT:
@@ -29,7 +32,6 @@ export default (state = initstate, action) => {
         }
         return todo
       })
-
       return state.set('todos', newTodos)
     default: return state
   }

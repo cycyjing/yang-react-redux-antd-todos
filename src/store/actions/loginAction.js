@@ -10,7 +10,10 @@ export const login = (username, password) => (dispatch) => {
     password
   }).then(r => {
     return r.data.data}).then(data => {
-    //有数据的状态  数据是给谁  loginreducer
+    window.localStorage.setItem('username',data.username)
+    window.localStorage.setItem('password',data.password)
+    window.localStorage.setItem('userId',data.userId)
+    
     dispatch({
       type: LOGIN.LOGIN,
       payload: {
@@ -27,6 +30,7 @@ export const login = (username, password) => (dispatch) => {
 }
 
 export const logout = () => {
+  window.localStorage.clear()
   return {
     type: LOGIN.LOGOUT,
     payload: {

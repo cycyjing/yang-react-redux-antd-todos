@@ -1,24 +1,24 @@
 import { REGISTER } from './actionTypes'
-import $http from '../../serverces'
+import {registerFun} from '../../serverces/apis'
 import {error} from './connectAction'
+import {login} from './loginAction'
 
 export const register = user => dispatch => {
-  $http.post().then((r) => r.data).then(data => {
-    console.log(data)
-    dispatch({
-      type: REGISTER.REGISTER,
-      payload: {
-       username:data.username,
-       password:data.password,
-       userId:data.userId
-      }
-    })
-  }).catch(err=>{
-    dispatch(error(err.message))
-    return Promise.reject(err)
-  })
  
-
+  
+  registerFun(user.username,user.password).then(data=>{
+    data=data.data
+    dispatch({
+          type: REGISTER.REGISTER,
+          payload: {
+           isRegister:true
+          }
+        })
+        login(data.username,data.password)(dispatch)
+  }).catch(err=>{
+      dispatch(error(err.message))
+      return Promise.reject(err)
+    })
 }
 export const changeRegisterState = (registerState) => {
   return {

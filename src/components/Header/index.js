@@ -17,7 +17,7 @@ class Head extends Component {
       <Header>
         <div className="logo" />
         {this.props.isLogin ?
-          <MenuUser  logout={this.props.logout} /> :
+          <MenuUser  logout={this.props.logout} username={this.props.username} /> :
           <MenuLogin />
         }
       </Header>

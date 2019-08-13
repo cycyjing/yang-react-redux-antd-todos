@@ -8,8 +8,8 @@ export default (state=initstate,action) => {
     case REGISTER.CHANGE_REGISTER_STATE:
       return state.merge(state,action.payload)
     case REGISTER.REGISTER:
-      console.log(action.payload)
-      return state
+    
+      return state.merge(state,action.payload)
     default :return state
   }
 }
