@@ -1,10 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # My React Demo
+ Project Link [click here](http://www.yangandyu.com:3000)
+
+## Technology
+`React` `Redux` `Immutable.js` `AntD` `React-Redux` `Redux-thunk` `Easy-mock`
+
+## Project
+### data from
+I mork some apis from [Easy-mock](https://easy-mock.com/)
 
 
-
-## Te
+### Project  structure
+```bash
+-build
+-public
+-src
+  - components
+    - components...
+        .
+        .
+        .
+  - serverces
+    - index.js
+    - apis.js
+    - connectConfig.js
+  - store
+    - reducers
+      - reducers...
+          .
+          .
+          .
+    - actions
+      - actionTypes.js
+      - actions...
+          .
+          .
+          .
+    - store.js
+  - views
+  - App.js
+  - App.less
+  - index.js
+-config-overrides.js
+-package.json
+-README.MD
+```
 
 
 
